@@ -32,6 +32,7 @@ describe('Robot', () => {
 
         describe('When robot coordinates are not valid types', () => {
             it('Should not change the robot coordinates', () => {
+                // @ts-ignore
                 robot.place('string', 0, 'NORTH')
                 expectRobotToBeInInitState(robot);
             });
@@ -151,42 +152,53 @@ describe('Robot', () => {
             });
         });
 
-
-
         const tests = [
             {
-                args: [0, 0, 'NORTH'],
-                expectedFacing: new Direction('EAST')
+                args: [2, 0, 'NORTH'],
+                expectedPosition: [2, 1],
             },
             {
-                args: [0, 0, 'EAST'],
-                expectedFacing: new Direction('SOUTH')
+                args: [2, 4, 'NORTH'],
+                expectedPosition: [2, 4],
             },
             {
-                args: [0, 0, 'SOUTH'],
-                expectedFacing: new Direction('WEST')
+                args: [4, 2, 'WEST'],
+                expectedPosition: [3, 2],
             },
             {
-                args: [0, 0, 'WEST'],
-                expectedFacing: new Direction('NORTH')
-            }
+                args: [0, 2, 'WEST'],
+                expectedPosition: [0, 2],
+            },
+            {
+                args: [0, 2, 'EAST'],
+                expectedPosition: [1, 2],
+            },
+            {
+                args: [4, 2, 'EAST'],
+                expectedPosition: [4, 2],
+            },
+            {
+                args: [2, 0, 'SOUTH'],
+                expectedPosition: [2, 0],
+            },
+            {
+                args: [2, 4, 'SOUTH'],
+                expectedPosition: [2, 3],
+            },
+
         ];
 
-        tests.forEach(({ args, expectedFacing }) => {
-            describe('When robot is placed', () => {
+        tests.forEach(({ args, expectedPosition }) => {
+            describe(`When robot is placed facing ${args[2]}`, () => {
                 beforeEach(() => {
                     // @ts-ignore
                     robot.place(...args);
                 });
 
-                it(`Should rotate from ${args[2]} to ${expectedFacing}`, () => {
-                    robot.right();
-                    expect(robot.getCurrentDirection()).toEqual(expectedFacing);
-                });
-
-                it('Should not change robot position', () => {
-                    expect(robot.getCurrentX()).toEqual(args[0]);
-                    expect(robot.getCurrentY()).toEqual(args[1]);
+                it(`Should move from position ${args[0]},${args[1]} to ${expectedPosition}`, () => {
+                    robot.move();
+                    expect(robot.getCurrentX()).toEqual(expectedPosition[0]);
+                    expect(robot.getCurrentY()).toEqual(expectedPosition[1]);
                 });
             });
         });

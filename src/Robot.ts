@@ -2,7 +2,7 @@ import Direction, { DirectionStringType } from './Direction';
 
 class Robot {
     private tableSize: number;
-    private currentX?: number | string;
+    private currentX?: number;
     private currentY?: number;
     private currentDirection?: Direction;
 
@@ -33,8 +33,8 @@ class Robot {
         return this.currentX !== undefined && this.currentY !== undefined && this.currentDirection !== undefined;
     }
 
-    place(x: number | string, y: number, direction: DirectionStringType): void {
-        if (x >= 0 && y >= 0 && x < this.tableSize && y <= this.tableSize) {
+    place(x: number, y: number, direction: DirectionStringType): void {
+        if (x >= 0 && y >= 0 && x < this.tableSize && y < this.tableSize) {
             this.currentX = x;
             this.currentY = y;
             this.currentDirection = new Direction(direction);
@@ -45,7 +45,15 @@ class Robot {
         if (!this.isPlaced()) {
             return;
         }
-        // Implementation for move() method
+        
+        const newX = this.currentX! + this.currentDirection!.vector[0];
+        const newY = this.currentY! + this.currentDirection!.vector[1];
+
+        if (newX >= 0 && newY >= 0 && newX < this.tableSize && newY < this.tableSize) {
+            this.currentX! = newX;
+            this.currentY! = newY;
+        }
+
     }
 
     left(): void {
