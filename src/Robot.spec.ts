@@ -200,6 +200,12 @@ describe('Robot', () => {
                     expect(robot.getCurrentX()).toEqual(expectedPosition[0]);
                     expect(robot.getCurrentY()).toEqual(expectedPosition[1]);
                 });
+
+                it('Should not change robot facing', () => {
+                    // @ts-ignore
+                    expect(robot.getCurrentDirection()).toEqual(new Direction(args[2]));
+                });
+
             });
         });
 
