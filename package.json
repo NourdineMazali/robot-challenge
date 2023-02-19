@@ -9,7 +9,7 @@
     "start": "ts-node src/index.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nourdine Mazali",
   "license": "ISC",
   "dependencies": {
     "yargs": "^17.7.0"
