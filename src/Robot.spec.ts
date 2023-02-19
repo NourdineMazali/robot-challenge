@@ -227,5 +227,23 @@ describe('Robot', () => {
                 expect(consoleLogSpy).toHaveBeenCalledWith(0, 1, 'EAST');
             });
         });
+        
+        describe('When place arguments are not valid', () => {
+            const tests = [
+                ['4', '5', 'EAST'],
+                [null, 2, 'EAST'],
+                [2, null, 'EAST'],
+                [2, 2, 'INVALID'],
+            ];
+
+            tests.forEach(args => {
+                it('Should not change the robot coordinates', () => {
+                    // @ts-ignore
+                    robot.place(...args)
+                    expectRobotToBeInInitState(robot);
+                });
+            });
+        });
+
     });
 });
