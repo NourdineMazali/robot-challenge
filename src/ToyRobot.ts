@@ -1,6 +1,6 @@
 import Direction, { DirectionStringType } from './Direction';
 
-class Robot {
+class ToyRobot {
     private tableSize: number;
     private currentX?: number;
     private currentY?: number;
@@ -33,12 +33,12 @@ class Robot {
         return this.currentX !== undefined && this.currentY !== undefined && this.currentDirection !== undefined;
     }
 
-    private areCoordinatesOnTheTable(x: number, y: number) {
+    private areCoordinatesValid(x: number, y: number) {
         return Number.isInteger(x) && Number.isInteger(y) && x >= 0 && y >= 0 && x < this.tableSize && y < this.tableSize; 
      } 
 
     place(x: number, y: number, direction: DirectionStringType): void {
-        if (this.areCoordinatesOnTheTable(x, y)) {
+        if (this.areCoordinatesValid(x, y)) {
             try {
                 this.currentDirection = new Direction(direction);
             } catch {
@@ -57,7 +57,7 @@ class Robot {
         const newX = this.currentX! + this.currentDirection!.vector[0];
         const newY = this.currentY! + this.currentDirection!.vector[1];
 
-        if (this.areCoordinatesOnTheTable(newX, newY)) {
+        if (this.areCoordinatesValid(newX, newY)) {
             this.currentX! = newX;
             this.currentY! = newY;
         }
@@ -86,4 +86,4 @@ class Robot {
     }
 }
 export type { DirectionStringType };
-export default Robot;
+export default ToyRobot;

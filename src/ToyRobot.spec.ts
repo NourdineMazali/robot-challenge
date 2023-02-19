@@ -1,4 +1,4 @@
-import Robot from './Robot';
+import Robot from './ToyRobot';
 import Direction from './Direction';
 
 const expectRobotToBeInInitState = (robot: Robot) => {
@@ -227,7 +227,7 @@ describe('Robot', () => {
                 expect(consoleLogSpy).toHaveBeenCalledWith(0, 1, 'EAST');
             });
         });
-        
+
         describe('When place arguments are not valid', () => {
             const tests = [
                 ['4', '5', 'EAST'],
