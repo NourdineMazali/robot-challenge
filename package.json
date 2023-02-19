@@ -11,7 +11,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "yargs": "^17.7.0"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.10",
     "jest": "^26.4.2",

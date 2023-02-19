@@ -77,5 +77,5 @@ class Robot {
         console.log(this.currentX, this.currentY, `${this.currentDirection}`);
     }
 }
-
+export type { DirectionStringType };
 export default Robot;
