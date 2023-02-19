@@ -1,4 +1,30 @@
-# How to use the app
+# AI-Media challenge
+
+Hi! This repository contains my submission to the AI-Media challenge, built with typescript.  
+
+## Technologies
+- Typescript
+
+## Dependencies
+- typescript
+- jest
+- yargs
+
+## Installation
+
+1. Clone the repository.
+
+```
+ git clone https://github.com/NourdineMazali/robot-challenge.git
+```
+
+2. Install dependencies.
+
+```
+npm install
+```
+
+## How to use the app
 To run the app use following command:
 ```
     npm run start -- -c path-to-commands-file
@@ -7,9 +33,15 @@ To run the app use following command:
 ```
 You can see sample commands file `commands.sample.txt`
 
+## Run tests
 
+In the folder, run:
 
-# Description:
+```
+npm test
+```
+
+## Description:
 
 ## Instructions
 
@@ -22,17 +54,24 @@ You can see sample commands file `commands.sample.txt`
 
 All commands should provide output indicating whether or not they succeeded.
 
- • PLACE X,Y,DIRECTION
-    X and Y are integers that indicate a location on the tabletop.
+ • PLACE X,Y,DIRECTION X and Y are integers that indicate a location on the tabletop.
+    
     DIRECTION is a string indicating which direction the robot should face. It it one of the four cardinal directions: NORTH, EAST, SOUTH or WEST.
+ 
  • MOVE
+    
     Instructs the robot to move 1 square in the direction it is facing.
+ 
  • LEFT
+    
     Instructs the robot to rotate 90° anticlockwise/counterclockwise.
+ 
  • RIGHT
     Instructs the robot to rotate 90° clockwise.
+ 
  • REPORT
     Outputs the robot's current location on the tabletop and the direction it is facing.
+
 ## Constraints
 
 The toy robot must not fall off the table during movement. This also includes
